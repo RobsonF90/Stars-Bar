@@ -52,6 +52,13 @@
   .feat-title { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: var(--gold); margin-bottom: 10px; }
   .feat-text { font-size: 13px; line-height: 1.8; color: var(--white-dim); }
 
+  /* VIDEO */
+  .video-section { padding: 80px 20px; position: relative; }
+  .video-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  .video-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+  .video-wrap { margin-top: 40px; border: 1px solid var(--gold-dim); overflow: hidden; }
+  .video-wrap video { width: 100%; display: block; max-height: 500px; background: #000; }
+
   /* GALLERY */
   .gallery-section { padding: 80px 20px; background: var(--black-soft); position: relative; }
   .gallery-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
@@ -134,6 +141,19 @@
     <span class="feat-icon">🎶</span>
     <h3 class="feat-title">Noites Exclusivas</h3>
     <p class="feat-text">Eventos temáticos e noites especiais com música selecionada para criar a atmosfera perfeita.</p>
+  </div>
+</section>
+
+<!-- VIDEO -->
+<section class="video-section" id="video">
+  <div class="video-inner">
+    <p class="section-label">O Nosso Ambiente</p>
+    <h2 class="section-title">Veja por Si</h2>
+    <div class="video-wrap">
+      <video controls playsinline poster="vitrine.jpeg">
+        <source src="video.mp4" type="video/mp4">
+      </video>
+    </div>
   </div>
 </section>
 
