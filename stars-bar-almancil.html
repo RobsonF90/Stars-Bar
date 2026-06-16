@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stars Bar Almancil</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96B;
+    --gold-dim: #8B6914;
+    --black: #0A0A0A;
+    --black-soft: #111111;
+    --black-card: #161616;
+    --white: #F5F0E8;
+    --white-dim: #A89880;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    padding: 40px 20px;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.12) 0%, transparent 70%),
+      var(--black);
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .logo-wrap {
+    margin-bottom: 32px;
+    animation: fadeDown 1s ease both;
+  }
+
+  .logo-wrap img {
+    width: 200px;
+    filter: invert(1) sepia(1) saturate(2) hue-rotate(5deg) brightness(0.85);
+  }
+
+  .hero-star {
+    font-size: 13px;
+    letter-spacing: 6px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    animation: fadeDown 1s 0.15s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 10vw, 96px);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    line-height: 1;
+    color: var(--white);
+    animation: fadeDown 1s 0.25s ease both;
+  }
+
+  .hero-title span {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .hero-sub {
+    margin-top: 16px;
+    font-size: 12px;
+    letter-spacing: 8px;
+    color: var(--white-dim);
+    text-transform: uppercase;
+    animation: fadeDown 1s 0.35s ease both;
+  }
+
+  .hero-divider {
+    margin: 36px auto;
+    width: 60px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    animation: fadeIn 1s 0.5s ease both;
+  }
+
+  .hero-desc {
+    max-width: 480px;
+    font-size: 14px;
+    line-height: 1.9;
+    color: var(--white-dim);
+    animation: fadeIn 1s 0.6s ease both;
+  }
+
+  .cta-wrap {
+    margin-top: 44px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    animation: fadeIn 1s 0.75s ease both;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--gold);
+    color: var(--black);
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    transition: background 0.3s, transform 0.2s;
+  }
+
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 16px 36px;
+    transition: border-color 0.3s, color 0.3s, transform 0.2s;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold-light); transform: translateY(-2px); }
+
+  /* ── FEATURES ── */
+  .features {
+    padding: 100px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2px;
+  }
+
+  .feat {
+    background: var(--black-card);
+    padding: 44px 32px;
+    text-align: center;
+    border: 1px solid #1E1E1E;
+    transition: border-color 0.3s;
+  }
+
+  .feat:hover { border-color: var(--gold-dim); }
+
+  .feat-icon {
+    font-size: 28px;
+    margin-bottom: 18px;
+    display: block;
+  }
+
+  .feat-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .feat-text {
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--white-dim);
+  }
+
+  /* ── INFO ── */
+  .info-section {
+    padding: 80px 20px;
+    background: var(--black-soft);
+    position: relative;
+  }
+
+  .info-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .info-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 6px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 6vw, 52px);
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 40px;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    text-align: left;
+    margin-top: 40px;
+  }
+
+  .info-item-label {
+    font-size: 10px;
+    letter-spacing: 4px;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .info-item-value {
+    font-size: 15px;
+    color: var(--white);
+    line-height: 1.6;
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    padding: 100px 20px;
+    text-align: center;
+    position: relative;
+  }
+
+  .contact::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 20px 48px;
+    margin-top: 40px;
+    transition: background 0.3s, color 0.3s, transform 0.2s;
+  }
+
+  .whatsapp-btn:hover {
+    background: var(--gold);
+    color: var(--black);
+    transform: translateY(-2px);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 32px 20px;
+    text-align: center;
+    border-top: 1px solid #1E1E1E;
+  }
+
+  footer p {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: #444;
+    text-transform: uppercase;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @media (max-width: 500px) {
+    .info-grid { grid-template-columns: 1fr; }
+    .cta-wrap { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="logo-wrap">
+    <!-- Star SVG inline replacing logo -->
+    <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <polygon points="40,5 49,30 76,30 54,47 62,72 40,55 18,72 26,47 4,30 31,30" fill="none" stroke="#C9A84C" stroke-width="2"/>
+      <polygon points="40,15 46,32 64,32 51,42 56,60 40,50 24,60 29,42 16,32 34,32" fill="#C9A84C" opacity="0.15"/>
+    </svg>
+  </div>
+  <p class="hero-star">★ &nbsp; Almancil, Algarve &nbsp; ★</p>
+  <h1 class="hero-title">Stars<span> Bar</span></h1>
+  <p class="hero-sub">Gentlemen's Club</p>
+  <div class="hero-divider"></div>
+  <p class="hero-desc">Uma experiência noturna exclusiva no coração do Algarve. Ambiente sofisticado, atendimento de excelência e noites inesquecíveis.</p>
+  <div class="cta-wrap">
+    <a href="https://wa.me/351913880902?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20Stars%20Bar" class="btn-primary">
+      💬 Fale Connosco
+    </a>
+    <a href="#info" class="btn-outline">Saber Mais</a>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="feat">
+    <span class="feat-icon">🥂</span>
+    <h3 class="feat-title">Open Bar Premium</h3>
+    <p class="feat-text">Seleção de bebidas internacionais e cocktails exclusivos preparados pelos nossos bartenders.</p>
+  </div>
+  <div class="feat">
+    <span class="feat-icon">✨</span>
+    <h3 class="feat-title">Ambiente VIP</h3>
+    <p class="feat-text">Espaço privativo com design luxuoso, lighting ambiente e conforto incomparável.</p>
+  </div>
+  <div class="feat">
+    <span class="feat-icon">🎶</span>
+    <h3 class="feat-title">Música ao Vivo</h3>
+    <p class="feat-text">As melhores noites com música selecionada para criar a atmosfera perfeita.</p>
+  </div>
+</section>
+
+<!-- INFO -->
+<section class="info-section" id="info">
+  <div class="info-inner">
+    <p class="section-label">Encontre-nos</p>
+    <h2 class="section-title">Onde & Quando</h2>
+    <div class="info-grid">
+      <div>
+        <p class="info-item-label">Localização</p>
+        <p class="info-item-value">Almancil, Algarve<br>Portugal</p>
+      </div>
+      <div>
+        <p class="info-item-label">Horário</p>
+        <p class="info-item-value">Todos os dias<br>22h00 — 04h00</p>
+      </div>
+      <div>
+        <p class="info-item-label">Contacto</p>
+        <p class="info-item-value">+351 913 880 902<br>WhatsApp disponível</p>
+      </div>
+      <div>
+        <p class="info-item-label">Reservas</p>
+        <p class="info-item-value">Recomendamos<br>reserva antecipada</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+  <p class="section-label">Reservas & Informações</p>
+  <h2 class="section-title">Fale Connosco</h2>
+  <p style="color: var(--white-dim); font-size: 14px; max-width: 400px; margin: 0 auto; line-height: 1.8;">
+    Entre em contacto pelo WhatsApp para reservas, informações ou pacotes especiais.
+  </p>
+  <a href="https://wa.me/351913880902?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20Stars%20Bar" class="whatsapp-btn">
+    📲 &nbsp; WhatsApp
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Stars Bar Almancil &nbsp;·&nbsp; Algarve, Portugal</p>
+</footer>
+
+</body>
+</html>
